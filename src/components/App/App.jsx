@@ -1,14 +1,41 @@
-import React from "react";
+import {useState, useEffect} from 'react';
 import "./App.css";
+import axios from 'axios';
+
+import GalleryList from '../GalleryList/GalleryList';
 
 function App() {
+
+  //Will hold the array of objects
+  let [galleryList, setGalleryList] = useState([]);
+
+  // runs when the component is first put on the DOM
+  useEffect(() => {
+    getGalleryList();
+  }, [])
+
+  const getGalleryList = () => {
+    axios
+      .get('/gallery')
+      .then((response) => {
+        // array of inventory objects saved to state array
+        setGalleryList(response.data);
+      })
+      .catch((error) => {
+        alert(`Could not get gallery list: ${error}`);
+        console.log('This is the error: ', error);
+      })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
       <div>
-        <h2>Gallery goes here</h2>
+        <GalleryList 
+        galleryList = {galleryList}
+        />
         
       </div>
     </div>
