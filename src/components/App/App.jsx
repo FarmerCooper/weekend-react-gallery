@@ -18,12 +18,22 @@ function App() {
     axios
       .get('/gallery')
       .then((response) => {
+        console.log('This is what we get', response.data)
         // array of inventory objects saved to state array
         setGalleryList(response.data);
       })
       .catch((error) => {
         alert(`Could not get gallery list: ${error}`);
         console.log('This is the error: ', error);
+      })
+  }
+
+  const updateItem = (id) => {
+    axios
+      .put(`gallery/like/${id}`)
+      .then(response => getGalleryList())
+      .catch((error) => {
+        console.log('Error in PUTting item', error);
       })
   }
 
@@ -35,8 +45,8 @@ function App() {
       <div>
         <GalleryList 
         galleryList = {galleryList}
+        updateItem = {updateItem}
         />
-        
       </div>
     </div>
   );

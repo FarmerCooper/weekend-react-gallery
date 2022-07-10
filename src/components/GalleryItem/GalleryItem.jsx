@@ -1,9 +1,14 @@
-function handleGalleryItem({item}) {
-  return (
+function handleGalleryItem({item, updateItem}) {
+  
+    const likeItem = () => {
+        updateItem(item.id)
+    }
+  
+    return (
     <>
       <div key={item.id}>
         <img src={item.path} />
-        <button>love it!</button>
+        <button onClick={likeItem}>love it!</button>
       </div>
     </>
   );
