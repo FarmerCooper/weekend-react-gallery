@@ -9,6 +9,7 @@ function handleGalleryItem({item, updateItem}) {
       <div key={item.id}>
         <img src={item.path} />
         <button onClick={likeItem}>love it!</button>
+        <p>This item has {item.likes} likes</p>
       </div>
     </>
   );
