@@ -1,12 +1,13 @@
-// import GalleryItem from '../GalleryItem/GalleryItem';
+import GalleryItem from '../GalleryItem/GalleryItem';
 
 function handleGalleryList({ galleryList }) {
   return (
     <>
         {galleryList.map((item) => (
-          <div key={item.id}>
-            <img src = {item.path} />
-          </div>  
+          < GalleryItem
+            key = {item.id}
+            item = {item}
+          />
         ))}
     </>
   );
